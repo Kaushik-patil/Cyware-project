@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+
+import Ans from './Ans';
 import './App.css';
+import Deck from './ContextApi';
+import Home from './Home';
+import './App.css'
+import { useState } from 'react';
+
+
+
+
 
 function App() {
+ const[game,setGame]=useState(false);
+
+
+ const change=()=>{
+ setGame(true);
+
+ }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       
+       {game ? <Home/>:  
+      <div  className='gamescreen'>
+       <div className='game-modal'>
+       <p>Press Enter to play the Game</p>
+       <button onClick={change}>Play Now</button>
+       </div>
+       </div>            
+       }
+      
+        
     </div>
+    
+     
   );
 }
 
