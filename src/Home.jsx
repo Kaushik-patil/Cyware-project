@@ -41,7 +41,7 @@ useEffect(()=>{
     if(showarr){
       setTimeout(()=>{
         setUserarr([]);
-      },3000)
+      },2000)
     
     }
    }
