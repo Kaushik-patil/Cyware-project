@@ -15,7 +15,7 @@ export default function Home() {
   const [userarr, setUserarr] = useState([]);
 
   var newarr = [];
-
+ 
 
   var a = cards.slice(0, 12);
   var b = cards.slice(0, 8);
@@ -23,26 +23,21 @@ export default function Home() {
   var d = cards.slice(0, 14);
   var e = cards.slice(0, 5);
 
+   {
+    gamequit && <QuitModal/>
+   }
 
  useEffect(()=>{
- setScore(0);
+ if(!gamequit){
+  setScore(0);
+ }
   setUserarr([]);
  },[gamequit])
 
 
-  const draw1 = () => {
-    var randomnum = Math.floor(Math.floor(Math.random() * 12));
-    const results = a.filter(obj => {
-      return obj.id != randomnum;
-    });
-    a = results;
+ 
 
-    var obj1 = a[randomnum];
-    newarr.push(obj1)
-    setUserarr([...userarr, obj1]);
-    console.log(obj1);
 
-  }
 
   const show = () => {
 
@@ -74,21 +69,46 @@ export default function Home() {
 
   }
 
-
-
-
-  const draw2 = () => {
+  const draw1 = () => {
     var randomnum = Math.floor(Math.floor(Math.random() * 12));
     const results = a.filter(obj => {
       return obj.id != randomnum;
     });
+    if(results.length===0){
+      setGamequit(true);
+      return;
+    }
+    if(userarr.length>=5){
+      alert("You can Only Draw 5 cards at time")
+    }
     a = results;
 
     var obj1 = a[randomnum];
     newarr.push(obj1)
     setUserarr([...userarr, obj1]);
-
     console.log(obj1);
+
+  }
+
+
+  const draw2 = () => {
+    var randomnum = Math.floor(Math.floor(Math.random() * 12));
+    const results = b.filter(obj => {
+      return obj.id != randomnum;
+    });
+    if(userarr.length>=5){
+      alert("You can Only Draw 5 cards at time")
+    }
+    b = results;
+    if(results.length===0){
+      setGamequit(true);
+      return;
+    }
+    var obj1 = b[randomnum];
+    newarr.push(obj1)
+    setUserarr([...userarr, obj1]);
+
+
 
   }
 
@@ -99,6 +119,13 @@ export default function Home() {
     const results = c.filter(obj => {
       return obj.id != randomnum;
     });
+    if(results.length===0){
+      setGamequit(true);
+      return;
+    }
+    if(userarr.length>=5){
+      alert("You can Only Draw 5 cards at time")
+    }
     c = results;
 
     var obj1 = c[randomnum];
@@ -116,6 +143,13 @@ export default function Home() {
     const results = d.filter(obj => {
       return obj.id != randomnum;
     });
+    if(results.length===0){
+      setGamequit(true);
+      return;
+    }
+    if(userarr.length>=5){
+      alert("You can Only Draw 5 cards at time")
+    }
     d = results;
 
     var obj1 = d[randomnum];
@@ -129,12 +163,22 @@ export default function Home() {
 
 
   const draw5 = () => {
-    var randomnum = Math.floor(Math.floor(Math.random() * 5));
-    const results = d.filter(obj => {
+    var randomnum = Math.floor((Math.random() * 5));
+    const results = e.filter(obj => {
       return obj.id != randomnum;
     });
-    d = results;
-    var obj1 = d[randomnum];
+   
+    
+    if(results===0){
+      setGamequit(true);
+      return;
+    }
+    if(userarr.length>=5){
+      alert("You can Only Draw 5 cards at time")
+    }
+    e = results;
+   
+    var obj1 = e[randomnum];
     newarr.push(obj1)
     setUserarr([...userarr, obj1]);
 
@@ -189,7 +233,7 @@ export default function Home() {
 
             {
 
-              userarr.map((item, index) => {
+              userarr?.map((item, index) => {
                 return (
                   <div key={index}>
                     <div className='card'>

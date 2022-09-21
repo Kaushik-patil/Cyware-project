@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How to play
+For every Round :- User have to draw cards using draw button given on card sets, After 5 card Withdrawl user has to click on Show button to get the Score .
 ## Available Scripts
 
 In the project directory, you can run:
