@@ -7,6 +7,7 @@ const QuitModal = () => {
   const { cards, setCards } = useContext(Deck);
 const change=()=>{
    setGamequit(false);
+   
   }
 
   return (
