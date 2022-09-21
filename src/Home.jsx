@@ -13,7 +13,7 @@ export default function Home() {
   const { cards, setCards } = useContext(Deck);
 
   const [userarr, setUserarr] = useState([]);
-
+  const[showarr,setShowarr]=useState(false);
   var newarr = [];
  
 
@@ -31,16 +31,28 @@ export default function Home() {
  if(!gamequit){
   setScore(0);
  }
+
   setUserarr([]);
  },[gamequit])
 
-
+useEffect(()=>{
+  if(userarr.length>=5 ){
+    
+    if(showarr){
+      setTimeout(()=>{
+        setUserarr([]);
+      },3000)
+    
+    }
+   }
+  
+},[showarr,userarr])
  
 
 
 
   const show = () => {
-
+ setShowarr(true);
   if(userarr.length<=0){
     alert("you can only draw 5 cards in a round");
   }
@@ -78,8 +90,9 @@ export default function Home() {
       setGamequit(true);
       return;
     }
-    if(userarr.length>=5){
-      alert("You can Only Draw 5 cards at time")
+    if(userarr.length>=4){
+      alert("You can Only Draw 5 cards at time");
+      setUserarr([])
     }
     a = results;
 
@@ -92,7 +105,7 @@ export default function Home() {
 
 
   const draw2 = () => {
-    var randomnum = Math.floor(Math.floor(Math.random() * 12));
+    var randomnum = Math.floor(Math.floor(Math.random() * 8));
     const results = b.filter(obj => {
       return obj.id != randomnum;
     });
@@ -139,7 +152,7 @@ export default function Home() {
 
 
   const draw4 = () => {
-    var randomnum = Math.floor(Math.floor(Math.random() * 10));
+    var randomnum = Math.floor(Math.floor(Math.random() * 14));
     const results = d.filter(obj => {
       return obj.id != randomnum;
     });
